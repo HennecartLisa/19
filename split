@@ -1,0 +1,96 @@
+#include <stdlib.h>
+#include <stdio.h>
+
+int		words_count(char *str)
+{
+	int		i;
+	int		w;
+
+	w = 0;
+	i = 0;
+	while (str[i] != '\0')
+	{
+		while (str[i] != '\0' && (str[i] == '\t' || str[i] == '\n'
+					|| str[i] == ' '))
+			i++;
+		if (str[i] != '\0')
+			w++;
+		while (str[i] != '\0' && !(str[i] == '\t' || str[i] == '\n'
+					|| str[i] == ' '))
+			i++;
+	}
+	w++;
+	return (w);
+}
+
+void	create_str(char *str, char **res)
+{
+	int		i;
+	int		w;
+	int		l;
+
+	w = 0;
+	i = 0;
+	while (str[i] != '\0')
+	{
+		while (str[i] != '\0' && (str[i] == '\t' || str[i] == '\n'
+					|| str[i] == ' '))
+			i++;
+		if (str[i] != '\0' && w++)
+			l = 1;
+		else
+			res[w] = 0;
+		while (str[i] != '\0' && !(str[i] == '\t' || str[i] == '\n'
+					|| str[i] == ' ') && i++)
+			l++;
+		if (str[i] != '\0' && l > 1)
+		{
+			res[w - 1] = malloc(l * sizeof(char));
+		}
+		l = 1;
+	}
+}
+
+int		fill_array(char *str, char **res, int i, int w)
+{
+	int		l;
+
+	l = 0;
+	while (str[i] != '\0')
+	{
+		while (str[i] != '\0' && (str[i] == '\t' || str[i] == '\n'
+					|| str[i] == ' '))
+		{
+			if (l > 0)
+				res[w - 1][l] = '\0';
+			i++;
+			l = 0;
+		}
+		while (str[i] != '\0' && !(str[i] == '\t'
+					|| str[i] == '\n' || str[i] == ' '))
+		{
+			res[w][l] = str[i];
+			printf("%d ",i);
+			i++;
+			l++;
+		}
+		w++;
+	printf("%d",w);
+	}
+	return (w);
+}
+
+char	**ft_split_whitespaces(char *str)
+{
+	char	**res;
+	int		w;
+	int		i;
+
+	res = malloc(words_count(str) * sizeof(char*));
+	w = 0;
+	i = 0;
+	create_str(str, res);
+	w = fill_array(str, res, i, w);
+	res[w] = 0;
+	return (res);
+}
