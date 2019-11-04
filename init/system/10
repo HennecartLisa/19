@@ -1,1 +1,1 @@
-fdisk -l
+lsblk

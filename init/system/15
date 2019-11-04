@@ -1,3 +1,1 @@
-pkill Processus_name
-kill processus id
-kill $!
+pkill tail -f /var/log/syslog
