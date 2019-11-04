@@ -1,0 +1,9 @@
+#!/bin/bash
+echo "enter the name of the user to delet"
+read user i
+f [ "$user" == "root" ] then
+	echo "no can do !"
+else
+	pkill -u $user
+	userdel -rf $user
+fi

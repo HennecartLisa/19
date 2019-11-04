@@ -1,0 +1,3 @@
+En session graphique on fait logout et on se log sur le nouvel utilisateur
+En ss on ssh user_name:password@FQDN
+on trouve FQDN avec hostname -f

@@ -1,0 +1,3 @@
+pkill Processus_name
+kill processus id
+kill $!
